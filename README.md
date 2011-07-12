@@ -7,7 +7,7 @@ It allows you to integrate a Flash application as Facebook Application.
 Example ActionScript code
 =========================
 
-```
+```actionscript
 var social_layer:SocialLayer = new SocialLayer(stage.loaderInfo, stage.loaderInfo.parameters.p);
 
 social_layer.addEventListener(SocialLayerEvent.READY, onSocialReady, false, 0 ,true);
