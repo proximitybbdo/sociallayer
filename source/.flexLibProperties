@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<flexLibProperties includeAllClasses="false" version="1">
+  <includeClasses>
+    <classEntry path="be.proximity.sociallayer.SocialLayer"/>
+    <classEntry path="be.proximity.sociallayer.data.SocialUser"/>
+    <classEntry path="be.proximity.sociallayer.events.SocialLayerEvent"/>
+    <classEntry path="be.proximity.sociallayer.platform.AbstractPlatform"/>
+    <classEntry path="be.proximity.sociallayer.platform.FacebookConnectPlatform"/>
+    <classEntry path="be.proximity.sociallayer.platform.FacebookPlatform"/>
+    <classEntry path="be.proximity.sociallayer.platform.IPlatform"/>
+    <classEntry path="be.proximity.sociallayer.platform.NetlogGamePlatform"/>
+    <classEntry path="be.proximity.sociallayer.platform.NetlogPlatform"/>
+    <classEntry path="be.proximity.socialtools.SocialTools"/>
+    <classEntry path="be.wellconsidered.social.facebook.FacebookBridge"/>
+    <classEntry path="be.wellconsidered.social.facebook.events.FacebookBridgeEvent"/>
+  </includeClasses>
+  <includeResources/>
+  <namespaceManifests/>
+</flexLibProperties>
