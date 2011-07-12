@@ -10,10 +10,10 @@ Example ActionScript code
 ```actionscript
 var social_layer:SocialLayer = new SocialLayer(stage.loaderInfo, stage.loaderInfo.parameters.p);
 
-social_layer.addEventListener(SocialLayerEvent.READY, onSocialReady, false, 0 ,true);
-social_layer.addEventListener(SocialLayerEvent.LOGGED_IN, onSocialLoggedIn, false, 0 ,true);
+social_layer.addEventListener(SocialLayerEvent.READY, onSocialReady, false, 0, true);
+social_layer.addEventListener(SocialLayerEvent.LOGGED_IN, onSocialLoggedIn, false, 0, true);
 social_layer.addEventListener(SocialLayerEvent.NO_PLATFORM, onSocialNoPlatform, false, 0, true);
-social_layer.addEventListener(SocialLayerEvent.PROFILE_CURRENTUSER, onSocialProfileCurrentUser);
+social_layer.addEventListener(SocialLayerEvent.PROFILE_CURRENTUSER, onSocialProfileCurrentUser, 0, true);
 
 social_layer.init();
 
