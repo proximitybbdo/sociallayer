@@ -2,9 +2,9 @@
 <% string absoluteURL = "http://stream.microsite.be/dev/sociallayer/"; %>
 <Module>
 	<ModulePrefs 	title="NLFlashBridge" 
-					title_url="http://www.proximity.bbdo.be" 
-					width="720" height="600" 
-					author="Proximity BBDO" author_email="pieterm@dmc.be">
+					      title_url="http://www.proximity.bbdo.be" 
+                width="720" height="600" 
+                author="Proximity BBDO" author_email="pieterm@dmc.be">
 					
 		<Require feature="opensocial-0.8" />
 		<Require feature="flash" />
@@ -19,7 +19,7 @@
 	<Content type="html" view="canvas">
 		<![CDATA[
 		
-		<script type="text/javascript" src="<%=absoluteURL%>/netlog/js/jquery-1.3.2.min.js"></script>
+		<script type="text/javascript" src="<%=absoluteURL%>/netlog/js/jquery-1.6.1.min.js"></script>
 		<script type="text/javascript" src="<%=absoluteURL%>/netlog/js/swfobject.js"></script>
 		
 		<script type="text/javascript" src="<%=absoluteURL%>/netlog/js/osFlashBridge/osFlashBridge.utils.js"></script>

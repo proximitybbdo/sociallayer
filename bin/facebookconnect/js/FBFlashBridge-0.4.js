@@ -72,7 +72,8 @@ function FBFlashBridge(flashObjectFunction, flashObjectName) {
 		
 		FB.getLoginStatus(function(response) {
 			if (response.session) {
-				inspect(_session);				
+				inspect(_session);		
+						
 				_session = response.session;
 
 				try{
@@ -82,11 +83,12 @@ function FBFlashBridge(flashObjectFunction, flashObjectName) {
 					trace("Respone perms error")
 				}
 				
-				_perms = response.perms.extended ? response.perms.extended : [];
+				if(response.perms)
+					_perms = response.perms.extended ? response.perms.extended : [];
 				
 				onLoggedIn();
 			} else {
-				// no user session available, someone you dont know
+				trace("No user session available, someone you dont know");
 			}
 		});
 	}
@@ -101,6 +103,8 @@ function FBFlashBridge(flashObjectFunction, flashObjectName) {
 	function login(perms) {
 		trace("Login");
 		
+		set_ready();
+
 		FB.login(function(response) {
 			if (response.session) {
 				trace("LOG IN READY");
@@ -134,7 +138,9 @@ function FBFlashBridge(flashObjectFunction, flashObjectName) {
 			
 			if(!_isLoggedIn) {
 				_isLoggedIn = true;
+				
 				inspect(_session);
+				
 				dispatchEvent(_s.LOGGED_IN, {session: _session, perms: _perms});
 			}
 		}
@@ -146,6 +152,8 @@ function FBFlashBridge(flashObjectFunction, flashObjectName) {
 	 */
 	function logout() {
 		trace("Log Out");
+		
+		set_ready();
 		
 		FB.logout(function(response) {
 			trace(_s.LOGGED_OUT);
@@ -196,6 +204,8 @@ function FBFlashBridge(flashObjectFunction, flashObjectName) {
 	function askPermissions(permissions) {
 		trace("Ask Permissions: " + permissions);
 		
+		set_ready();
+		
 		FB.login(function(response) {
 			if (response.session) {
 				if (response.perms) {
@@ -223,6 +233,8 @@ function FBFlashBridge(flashObjectFunction, flashObjectName) {
 	function getAppUsers() {
 		trace("Get Users of this application");
 		
+		set_ready();
+		
 		FB.api({
 				method: 'friends.getAppUsers'
 			}, function(result) {
@@ -245,6 +257,8 @@ function FBFlashBridge(flashObjectFunction, flashObjectName) {
 	 */
 	function getFriends() {
 		trace("Get Friends of logged in user");
+		
+		set_ready();
 		
 		FB.api({
 				method: 'friends.get'
@@ -307,6 +321,8 @@ function FBFlashBridge(flashObjectFunction, flashObjectName) {
 		 * @private
 		 */
 		function getGenericUsersInfo(uids, fields, callback) {
+			set_ready();
+			
 			if(!fields)
 				fields = ["uid", "pic_square", "first_name", "last_name", "about_me", "sex", "name", "proxied_email", "birthday_date", "is_app_user"]; // Default array of props
 			
@@ -334,6 +350,8 @@ function FBFlashBridge(flashObjectFunction, flashObjectName) {
 	function sendEmail(recipients, subject, text, fbml) {
 		trace("Send Email to '" + recipients + "': '" + subject + "', '" + text + "', '" + fbml + "'");
 		
+		set_ready();
+		
 		FB.api({
 				method: 'notifications.sendEmail', 
 				recipients: recipients, 
@@ -357,6 +375,8 @@ function FBFlashBridge(flashObjectFunction, flashObjectName) {
 	 */
 	function getNotifications() {
 		trace("Get notifications of logged in user");
+		
+		set_ready();
 		
 		FB.api({
 				method: 'notifications.get'
@@ -386,6 +406,9 @@ function FBFlashBridge(flashObjectFunction, flashObjectName) {
 				'media':[{'type':'image','src':'http://www.macheist.com/static/facebook/facebook_mh.png','href':'http://www.macheist.com/nano/facebook'}]
 			}
 		*/	
+		
+		set_ready();
+		
 		FB.api({
 				method: 'stream.publish', 
 				message: user_message, 
@@ -411,6 +434,8 @@ function FBFlashBridge(flashObjectFunction, flashObjectName) {
 	function getStream(uid) {
 		trace("Get Stream of " + uid);
 		
+		set_ready();
+		
 		FB.api({
 				method: 'stream.get', 
 				viewer_id: uid
@@ -434,6 +459,8 @@ function FBFlashBridge(flashObjectFunction, flashObjectName) {
 	function getStreamComments(post_id) {
 		trace("Get comments of stream with post_id " + post_id);
 		
+		set_ready();
+		
 		FB.api({
 				method: 'stream.getComments', 
 				post_id: post_id
@@ -455,6 +482,10 @@ function FBFlashBridge(flashObjectFunction, flashObjectName) {
 	function onFlashLoaded() {
 		trace("onFlashLoaded (from Flash)");
 		
+		set_ready();
+	}	
+	
+	function set_ready() {
 		_isFlashReady = true;
 	}
 	
@@ -463,6 +494,8 @@ function FBFlashBridge(flashObjectFunction, flashObjectName) {
 	 */
 	function checkLogin() {
 		trace("checkLogin (from Flash)");
+		
+		set_ready();
 		
 		if(_isLoggedIn) { // Notify Flash when FB User is logged in
 			trace("FB user logged in.");
@@ -519,7 +552,7 @@ function FBFlashBridge(flashObjectFunction, flashObjectName) {
 		var oFlash = flashObjectFunction(flashObjectName);
 
 		trace("DFE: " + JSON.stringify(args));
-
+		
 		if(oFlash && _isFlashReady) {
 			if(arguments.length > 1)
 				oFlash[func](args);
@@ -561,25 +594,34 @@ function FBFlashBridge(flashObjectFunction, flashObjectName) {
 }
 
 //***********************************************************************************************************//
-
+/*
 if(!("console" in window) || !("firebug" in console)) {
     var names = ["log", "debug", "info", "warn", "error", "assert", "dir", "dirxml", "group", "groupEnd", "time", "timeEnd", "count", "trace", "profile", "profileEnd"];
 
     window.console = {};
 
     for(var i = 0; i < names.length; ++i) window.console[names[i]] = function() {};
+}*/
+
+if(!("console" in window)) {
+	var names = ["log", "debug", "info", "warn", "error", "assert", "dir", "dirxml", "group", "groupEnd", "time", "timeEnd", "count", "trace", "profile", "profileEnd"];
+
+  window.console = {};
+
+  for(var i = 0; i < names.length; ++i) window.console[names[i]] = function() {};
 }
 
 function trace(msg) {
 	// alert(msg);
 	
-	if(console)	
+	if(console && console.debug)	
 		console.debug(msg);
 }
 
 function inspect(obj) {
-	if(console)	
+	if(console && console.dir)	
 		console.dir(obj);
 }
 
 //***********************************************************************************************************//
+

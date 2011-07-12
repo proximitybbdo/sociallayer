@@ -13,17 +13,17 @@
 	if(Request["lang"] == "FR") {    
 		lang = "FR";
 		
-		absolute_url = "http://mmsconnect4.staging.proximity.bbdo.be/";
-		facebook_url 		= "http://apps.facebook.com/mmsconnectfr-re/";  
-		facebook_api 		= "2c1a3418f7f6102245d31e6dcdbfcf13";
-		facebook_app_id = "193508727338964";
+		absolute_url    = "http://xxx";
+		facebook_url 		= "http://apps.facebook.com/xxx";  
+		facebook_api 		= "xxx";
+		facebook_app_id = "xxx";
 	} else {
 		lang = "NL";
 		
-		absolute_url = "http://mmsconnect4.staging.proximity.bbdo.be/";
-		facebook_url 		= "http://apps.facebook.com/mmsconnect-re/";          
-		facebook_api 		= "07b90bfe186ccf6ba3a3baaf0c6e1801";
-		facebook_app_id = "192507970770444";
+		absolute_url    = "http://xxx";
+		facebook_url 		= "http://apps.facebook.com/xxx";          
+		facebook_api 		= "xxx";
+		facebook_app_id = "xxx";
 	}
 	
 	string redirect_url = facebook_url; // + "%3Flang%3D" + lang;
@@ -105,7 +105,7 @@
 
   <script type="text/javascript">
     var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-5863962-6']);
+    _gaq.push(['_setAccount', 'UA-xxx']);
     _gaq.push(['_trackPageview']);
 
     (function() {

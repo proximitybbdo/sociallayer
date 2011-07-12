@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" Debug="true" %>
 <%  
-  string absolute_url = "http://mmspuissance.microsite.be/";
+  string absolute_url = "http://xxx/";
   string facebook_url = "";
   string facebook_api = "";
   string lang = "FR";   
@@ -8,8 +8,8 @@
   string gid_red = "";    
   string devmode = "";
   
-  facebook_url = "http://apps.facebook.com/puissancemmsfrance/";  
-  facebook_api = "377fa8a86019a424e55ed10b94c0de74";
+  facebook_url = "http://apps.facebook.com/xxx";  
+  facebook_api = "xxx";
     
   if(Request["gid"] != null) {
     gid = "&gid=" + Request["gid"];  
@@ -34,7 +34,7 @@
   <link rel="icon" type="image/png" href="favico.png">
   <link href="assets/css/style.css" rel="stylesheet" type="text/css" media="screen" />
 
-  <script type="text/javascript" src="assets/js/jquery-1.3.2.min.js"></script>
+  <script type="text/javascript" src="assets/js/jquery-1.6.1.min.js"></script>
   <script type="text/javascript" src="assets/js/swfobject.js"></script>
   <script type="text/javascript" src="assets/js/FBFlashBridge-0.4.js" ></script>
   <script type="text/javascript" src="assets/js/json2.js" ></script>
@@ -43,7 +43,7 @@
     var flashvars = { config: "default", 
                       referrer: document.referrer,  
                       globalURL: "<%= absolute_url %>", 
-                      lang: "FR", 
+                      lang: "<%= lang %>", 
                       p: "facebook_connect",
                       socialURL: "<%= facebook_url %>",
                       gid: "<%= gid %>",
@@ -62,7 +62,7 @@
     var _fbFlashBridge;
 
 		window.fbAsyncInit = function() {
-			FB.init({appId: '180627541947905', status: true, cookie: true, xfbml: true});
+			FB.init({appId: 'xxx', status: true, cookie: true, xfbml: true});
 
 			swfobject.embedSWF("../../assets/swf/Main.swf", "flash_alternative", "100%", "100%", "10.0.0", "assets/swf/expressInstall.swf", flashvars, params, attributes);
 
@@ -84,7 +84,7 @@
   <script type="text/javascript">
 
     var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-5863962-6']);
+    _gaq.push(['_setAccount', 'UA-xxx']);
     _gaq.push(['_trackPageview']);
 
     (function() {
